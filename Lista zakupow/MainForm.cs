@@ -43,7 +43,7 @@ namespace Lista_zakupow
             SQLiteConnection sQLiteConnection = new SQLiteConnection(connectionString);
             sQLiteConnection.Open();
 
-            string commandString = "select * from produkty";
+            string commandString = "select * from produkty order by nazwa asc";
             SQLiteCommand sQLiteCommand = new SQLiteCommand(commandString, sQLiteConnection);
 
             SQLiteDataReader sQLiteDataReader = sQLiteCommand.ExecuteReader();
