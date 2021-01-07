@@ -42,10 +42,13 @@ namespace Lista_zakupow
             // 
             // produktBox
             // 
+            this.produktBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.produktBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.produktBox.Location = new System.Drawing.Point(12, 30);
             this.produktBox.Name = "produktBox";
             this.produktBox.Size = new System.Drawing.Size(100, 23);
             this.produktBox.TabIndex = 0;
+            this.produktBox.Enter += new System.EventHandler(this.produktBox_Enter);
             // 
             // wagaBox
             // 
@@ -112,7 +115,7 @@ namespace Lista_zakupow
             this.label2.TabIndex = 5;
             this.label2.Text = "Waga";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -125,7 +128,7 @@ namespace Lista_zakupow
             this.Controls.Add(this.produktBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kalkulator zakupów";
             this.ResumeLayout(false);

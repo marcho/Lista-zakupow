@@ -47,13 +47,34 @@ namespace Lista_zakupow
             SQLiteCommand sQLiteCommand = new SQLiteCommand(commandString, sQLiteConnection);
 
             SQLiteDataReader sQLiteDataReader = sQLiteCommand.ExecuteReader();
-
             while (sQLiteDataReader.Read())
             {
                 string[] row = { sQLiteDataReader.GetString(0), sQLiteDataReader.GetInt32(1).ToString(), sQLiteDataReader.GetValue(2).ToString() };
                 var listViewItem = new ListViewItem(row);
                 listView1.Items.Add(listViewItem);
             }
+        }
+
+        private void produktBox_Enter(object sender, EventArgs e)
+        {
+            string connectionString = @"URI=file:baza.db";
+            SQLiteConnection sQLiteConnection = new SQLiteConnection(connectionString);
+            sQLiteConnection.Open();
+
+            string commandString = "select * from produkty order by nazwa asc";
+            SQLiteCommand sQLiteCommand = new SQLiteCommand(commandString, sQLiteConnection);
+
+            SQLiteDataReader sQLiteDataReader = sQLiteCommand.ExecuteReader();
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            autoCompleteStringCollection.Clear();
+
+            while (sQLiteDataReader.Read())
+            {
+                string row = sQLiteDataReader.GetString(0);
+                autoCompleteStringCollection.Add(row);
+            }
+
+            produktBox.AutoCompleteCustomSource = autoCompleteStringCollection;
         }
     }
 }
